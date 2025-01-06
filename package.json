@@ -16,7 +16,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/jimenez994/Playground/issues"
   },
@@ -24,7 +24,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "detect-port": "^2.1.0",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.3"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

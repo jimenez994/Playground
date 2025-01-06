@@ -1,7 +1,9 @@
-const express = require("express");
-const path = require("path");
-const { detect } = require("detect-port"); // Import detect-port
-const cors = require("cors");
+import express from "express";
+import path from "path";
+import { fileURLToPath } from 'url';  // Import the fileURLToPath function
+import { detect } from "detect-port"; // Import detect-port
+import cors from "cors";
+import mongoose from "mongoose"
 
 
 const app = express();
@@ -13,6 +15,9 @@ const DEFAULT_PORT = process.env.PORT || 5001;
 
 let server;
 
+// Workaround to get __dirname in an ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, "client/build")));
