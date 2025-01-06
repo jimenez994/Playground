@@ -2,10 +2,20 @@ import { useState } from "react"
 import "./styles.css"
 import NewTodoForm from "./NewTodoForm"
 import ListItems from "./ListItems"
+import axios from "axios"
 function App() {
   const [items, setItems] = useState([])
 
-  const addItem = (tittle) => {    
+  const addItem = (tittle) => { 
+    axios
+      .get("/api") // Make a GET request to the /api route
+      .then((response) => {
+        console.log(response.data.message); // Set the message from the server to the state
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error); // Handle error
+        console.log("Failed to load message."); // Optionally set error message
+      });
     setItems(currentItems => {
       return [
         ...currentItems, {
@@ -41,6 +51,7 @@ function App() {
 
   return (
     <>
+      <h1>Todo List</h1>
       <NewTodoForm onSubmit={addItem} />
       <ListItems items={items} onCheckHandle={ onCheckHandle } onDeleteHandle={ onDeleteHandle }/>
     </>

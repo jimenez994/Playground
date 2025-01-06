@@ -1,4 +1,5 @@
 import { useState } from "react"
+import PropTypes from "prop-types"
 
 const NewTodoForm = (props) => {
   const [newItem, setItem] = useState("")
@@ -22,5 +23,9 @@ const NewTodoForm = (props) => {
     </>
   )
 
+}
+
+NewTodoForm.propTypes = {
+  onSubmit: PropTypes.func
 }
 export default NewTodoForm
