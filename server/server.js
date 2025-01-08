@@ -37,7 +37,6 @@ app.get("*", (req, res) => {
 });
 
 
-
 // Detect available port and start the server
 detect(DEFAULT_PORT).then((availablePort) => {
   if (availablePort !== DEFAULT_PORT) {
