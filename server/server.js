@@ -26,7 +26,7 @@ let server;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use('/api/', taskController)
+app.use('/api/tasks/', taskController)
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, "client/build")));
