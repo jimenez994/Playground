@@ -3,10 +3,17 @@ import path from "path";
 import { fileURLToPath } from 'url';  // Import the fileURLToPath function
 import { detect } from "detect-port"; // Import detect-port
 import cors from "cors";
-import mongoose from "mongoose"
 
+import taskController from "./controllers/Task.js"
 
+import connectDB from "./config/db.js"
 const app = express();
+// Middleware to parse request body on api req.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// connecting to the server
+connectDB()
 
 // Enable CORS - ensure that your frontend React app and backend Express server can communicate securely and without issues.
 app.use(cors());
@@ -19,13 +26,10 @@ let server;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+app.use('/api/', taskController)
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, "client/build")));
-
-// API routes (if needed)
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from the server!" });
-});
 
 // Handle React routing, return all requests to React app
 app.get("*", (req, res) => {
