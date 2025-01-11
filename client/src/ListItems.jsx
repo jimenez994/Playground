@@ -9,7 +9,7 @@ const ListItems = ({ onCheckHandle, onDeleteHandle, items }) => {
       <ul className="list">
         {items.length === 0 && "No todos"}
         {items.map(item => {
-          return (<Item key={item.id} item={item} onCheckHandle={onCheckHandle} onDeleteHandle={onDeleteHandle}/>)
+          return (<Item key={item._id} item={item} onCheckHandle={onCheckHandle} onDeleteHandle={onDeleteHandle}/>)
         })}
       </ul>
     </>

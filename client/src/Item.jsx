@@ -5,11 +5,11 @@ const Item = ({ onCheckHandle, onDeleteHandle, item }) => {
     <>
       <li>
         <label>
-            <input type="checkbox" id={item.id} onChange={() => onCheckHandle(item.id)} checked={item.completed} />
-          {item.title}
+            <input type="checkbox" id={item._id} onChange={() => onCheckHandle(item._id)} checked={item.completed} />
+          {item.tittle}
         </label>
         <button className="btn btn-edit"><i className="fas fa-ellipsis-v"></i></button>
-          <button className="btn btn-danger" onClick={() => onDeleteHandle(item.id)}>Delete</button>
+          <button className="btn btn-danger" onClick={() => onDeleteHandle(item._id)}>Delete</button>
       </li>
     </>
   )

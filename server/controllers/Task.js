@@ -5,7 +5,7 @@ const router = express.Router();
 // API routes (if needed)
 router.get("/", async (req, res) => {
   try {
-    const tasks = await Task.find(); // Fetch all tasks
+    const tasks = await Task.find().sort({ createdAt: -1 }); // Fetch all tasks
     res.status(200).json(tasks);
   } catch (error) {
     res.status(500).json({ message: "Error fetching tasks", error });
@@ -63,5 +63,27 @@ router.put("/:id", async (req, res) => {
     res.status(500).json({ error: error.message})
   }
 })
+
+router.put("/toggle/:id", async (req, res) => {
+  req.params
+  try {
+    // Find the task by ID
+    const task = await Task.findById(req.params.id);
+    if (!task) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    // Toggle the `completed` value
+    task.completed = !task.completed;
+
+    // Save the updated task
+    const updatedTask = await task.save();
+
+    res.status(200).json({ message: "Task toggled successfully", updatedTask });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 export default router;
