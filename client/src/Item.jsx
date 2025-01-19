@@ -1,6 +1,7 @@
 import PropTypes from "prop-types"
 
 const Item = ({ onCheckHandle, onDeleteHandle, item }) => {
+
   return (
     <>
       <li>
